@@ -5,37 +5,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Movie implements Serializable {
+public class CreateMovie implements Serializable {
 
-    private Long id;
     private String title;
     private double duration;
-
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate releaseDate;
 
-    public Movie() {
-    }
-
-    public Movie(Long id, String title, double duration, LocalDate releaseDate) {
-        this.id = id;
-        this.title = title;
-        this.duration = duration;
-        this.releaseDate = releaseDate;
-    }
-
-    public Movie(String title, double duration, LocalDate releaseDate) {
-        this.title = title;
-        this.duration = duration;
-        this.releaseDate = releaseDate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public CreateMovie() {
     }
 
     public String getTitle() {
@@ -60,5 +37,14 @@ public class Movie implements Serializable {
 
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    @Override
+    public String toString() {
+        return "CreateMovie{" +
+                "title='" + title + '\'' +
+                ", duration=" + duration +
+                ", releaseDate=" + releaseDate +
+                '}';
     }
 }
