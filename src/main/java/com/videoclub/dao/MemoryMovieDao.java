@@ -1,12 +1,9 @@
 package com.videoclub.dao;
 
 import com.videoclub.dao.base.MovieDao;
-import com.videoclub.model.Movie;
+import com.videoclub.dao.model.Movie;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MemoryMovieDao implements MovieDao {
@@ -34,9 +31,13 @@ public class MemoryMovieDao implements MovieDao {
     }
 
     @Override
-    public Movie update(Movie movieToUpdate) {
-        //TODO
-        return null;
+    public boolean update(Movie movieToUpdate) {
+        return this.movies
+                .stream()
+                .filter(m -> Objects.equals(m.getId(), movieToUpdate.getId()))
+                .map(m -> m = movieToUpdate)
+                .findFirst()
+                .isPresent();
     }
 
     @Override
