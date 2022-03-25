@@ -3,7 +3,10 @@ package com.videoclub.dao;
 import com.videoclub.dao.base.MovieDao;
 import com.videoclub.dao.model.Movie;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class MemoryMovieDao implements MovieDao {
@@ -32,12 +35,17 @@ public class MemoryMovieDao implements MovieDao {
 
     @Override
     public boolean update(Movie movieToUpdate) {
-        return this.movies
-                .stream()
-                .filter(m -> Objects.equals(m.getId(), movieToUpdate.getId()))
-                .map(m -> m = movieToUpdate)
-                .findFirst()
-                .isPresent();
+        boolean isUpdate = false;
+        List<Movie> tempList = new ArrayList<>();
+        for (Movie m : movies) {
+            if (m.getId() == movieToUpdate.getId()) {
+                m = movieToUpdate;
+                isUpdate = true;
+            }
+            tempList.add(m);
+        }
+        movies = tempList;
+        return isUpdate;
     }
 
     @Override
