@@ -11,7 +11,7 @@ public interface GenericDao<T, ID extends Number> {
 
     Optional<T> findById(ID id);
 
-    T update(T object);
+    boolean update(T object);
 
     void delete(ID id);
 }

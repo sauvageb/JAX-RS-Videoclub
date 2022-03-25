@@ -1,6 +1,6 @@
-package com.videoclub.model;
+package com.videoclub.dao.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.videoclub.controller.model.MovieReponse;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -10,18 +10,9 @@ public class Movie implements Serializable {
     private Long id;
     private String title;
     private double duration;
-
-    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate releaseDate;
 
     public Movie() {
-    }
-
-    public Movie(Long id, String title, double duration, LocalDate releaseDate) {
-        this.id = id;
-        this.title = title;
-        this.duration = duration;
-        this.releaseDate = releaseDate;
     }
 
     public Movie(String title, double duration, LocalDate releaseDate) {
@@ -29,6 +20,16 @@ public class Movie implements Serializable {
         this.duration = duration;
         this.releaseDate = releaseDate;
     }
+
+    public MovieReponse toDto(){
+        MovieReponse m = new MovieReponse();
+        m.setId(this.id);
+        m.setTitle(this.title);
+        m.setDuration(this.duration);
+        m.setReleaseDate(this.releaseDate);
+        return m;
+    }
+
 
     public Long getId() {
         return id;

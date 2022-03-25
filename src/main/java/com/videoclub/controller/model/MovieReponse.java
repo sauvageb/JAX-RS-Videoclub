@@ -1,18 +1,27 @@
-package com.videoclub.model;
+package com.videoclub.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class CreateMovie implements Serializable {
+public class MovieReponse implements Serializable {
 
+    private Long id;
     private String title;
     private double duration;
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate releaseDate;
 
-    public CreateMovie() {
+    public MovieReponse() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -37,14 +46,5 @@ public class CreateMovie implements Serializable {
 
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
-    }
-
-    @Override
-    public String toString() {
-        return "CreateMovie{" +
-                "title='" + title + '\'' +
-                ", duration=" + duration +
-                ", releaseDate=" + releaseDate +
-                '}';
     }
 }

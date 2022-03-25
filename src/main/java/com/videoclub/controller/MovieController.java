@@ -1,9 +1,12 @@
 package com.videoclub.controller;
 
+import com.videoclub.controller.model.CreateMovie;
+import com.videoclub.controller.model.MovieReponse;
 import com.videoclub.dao.DaoFactory;
 import com.videoclub.dao.base.MovieDao;
-import com.videoclub.model.CreateMovie;
-import com.videoclub.model.Movie;
+import com.videoclub.dao.entity.Movie;
+import com.videoclub.service.MovieService;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -14,12 +17,14 @@ import java.util.List;
 @Path("/movies")
 public class MovieController {
 
+    @Inject
+    MovieService movieService;
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
-        MovieDao movieDao = DaoFactory.getMovieDao();
-        List<Movie> movieList = movieDao.findAll();
-        return Response.ok(movieList).build();
+        List<MovieReponse> movieReponses = movieService.fetchAll();
+        return Response.ok(movieReponses).build();
     }
 
     @POST
@@ -31,5 +36,6 @@ public class MovieController {
         movieDao.save(movie);
         return Response.status(201).build();
     }
+
 
 }

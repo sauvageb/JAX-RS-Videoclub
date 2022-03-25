@@ -2,7 +2,7 @@ package com.videoclub;
 
 import com.videoclub.dao.DaoFactory;
 import com.videoclub.dao.base.MovieDao;
-import com.videoclub.model.Movie;
+import com.videoclub.dao.entity.Movie;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;

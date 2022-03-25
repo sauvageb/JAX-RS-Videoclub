@@ -1,7 +1,7 @@
 package com.videoclub.dao;
 
 import com.videoclub.dao.base.MovieDao;
-import com.videoclub.dao.model.Movie;
+import com.videoclub.dao.entity.Movie;
 
 import java.util.ArrayList;
 import java.util.Collections;
